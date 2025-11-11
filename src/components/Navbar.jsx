@@ -35,7 +35,12 @@ const Navbar = () => {
 
   const navLinks = [
     { href: '#features', label: 'Features', id: 'features' },
-    { href: '#showcase', label: 'How It Works', id: 'showcase' },
+    { href: '#documentation', label: 'Documentation', id: 'documentation' },
+  ]
+
+  const stats = [
+    { icon: 'fa-brands fa-linkedin', value: '12.5K' },
+    { icon: 'fa-brands fa-twitter', value: '26.3K' },
   ]
 
   return (
@@ -69,38 +74,26 @@ const Navbar = () => {
                 key={link.id}
                 href={link.href}
                 className={`navbar-link ${activeSection === link.id ? 'navbar-link-active' : ''}`}
-                whileHover={{ y: -2 }}
-                whileTap={{ y: 0 }}
+                whileHover={{ opacity: 1 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {link.label}
-                {activeSection === link.id && (
-                  <motion.div
-                    className="navbar-link-indicator"
-                    layoutId="navbar-indicator"
-                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                  />
-                )}
               </motion.a>
             ))}
           </div>
 
-          {/* CTA Buttons */}
-          <div className="navbar-actions">
-            <motion.button
-              className="navbar-signin"
-              whileHover={{ opacity: 0.8 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Join Beta Waitlist
-            </motion.button>
-            <motion.button
-              className="navbar-download"
-              whileHover={{ scale: 1.05, boxShadow: '0 8px 24px rgba(99, 102, 241, 0.4)' }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <i className="fas fa-download"></i>
-              Download
-            </motion.button>
+          {/* Stats */}
+          <div className="navbar-stats">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                className="navbar-stat"
+                whileHover={{ y: -2 }}
+              >
+                <i className={stat.icon}></i>
+                <span>{stat.value}</span>
+              </motion.div>
+            ))}
           </div>
 
           {/* Mobile Menu Button */}
@@ -143,26 +136,14 @@ const Navbar = () => {
                   {link.label}
                 </motion.a>
               ))}
-              <div className="navbar-mobile-actions">
-                <motion.button
-                  className="navbar-mobile-signin"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Sign In
-                </motion.button>
-                <motion.button
-                  className="navbar-mobile-download"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <i className="fas fa-download"></i>
-                  Download
-                </motion.button>
+              
+              <div className="navbar-mobile-stats">
+                {stats.map((stat, index) => (
+                  <div key={index} className="navbar-mobile-stat">
+                    <i className={stat.icon}></i>
+                    <span>{stat.value}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </motion.div>
