@@ -22,6 +22,9 @@ function App() {
       infinite: false,
     })
 
+    // Expose Lenis instance globally so components can access it
+    window.lenis = lenis
+
     // Animation frame loop for smooth scrolling
     function raf(time) {
       lenis.raf(time)
@@ -33,6 +36,7 @@ function App() {
     // Cleanup
     return () => {
       lenis.destroy()
+      delete window.lenis
     }
   }, [])
 

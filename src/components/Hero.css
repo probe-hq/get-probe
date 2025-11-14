@@ -33,7 +33,7 @@
 .orb-1 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(255, 107, 53, 0.4), transparent 70%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent 70%);
   top: -10%;
   right: 10%;
 }
@@ -41,7 +41,7 @@
 .orb-2 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(255, 140, 66, 0.3), transparent 70%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent 70%);
   bottom: -5%;
   left: 5%;
   animation-delay: -12s;
@@ -57,8 +57,8 @@
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(255, 107, 53, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 107, 53, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 80px 80px;
   mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
   -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
@@ -97,7 +97,7 @@
   gap: 10px;
   padding: 10px 20px;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(244, 77, 16, 0.589);
+  border: 1px solid rgba(255, 255, 255, 0.589);
   border-radius: 100px;
   font-size: 14px;
   font-weight: 500;
@@ -214,7 +214,7 @@
   transform: translateY(-4px);
   box-shadow: 
     0 40px 80px rgba(0, 0, 0, 0.8),
-    0 0 0 0.5px rgba(255, 107, 53, 0.15);
+    0 0 0 0.5px rgba(255, 255, 255, 0.15);
 }
 
 /* Window Header */
@@ -270,12 +270,12 @@
   align-items: center;
   gap: 6px;
   padding: 5px 11px;
-  background: rgba(255, 107, 53, 0.08);
-  border: 1px solid rgba(255, 107, 53, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 6px;
   font-size: 11px;
   font-weight: 600;
-  color: #ff8c42;
+  color: #ffffff;
   font-family: 'Inter', sans-serif;
   letter-spacing: 0.02em;
 }
@@ -284,7 +284,7 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #ff6b35;
+  background: #ffffff;
   animation: pulseStatus 2s ease-in-out infinite;
 }
 
@@ -324,8 +324,8 @@
 }
 
 .tab-button.active {
-  background: rgba(255, 107, 53, 0.1);
-  color: #ff8c42;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
 }
 
 .tab-icon {
@@ -352,7 +352,7 @@
 
 .demo-card:hover {
   background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 107, 53, 0.15);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .demo-prompt {
@@ -371,9 +371,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #ff6b35, #ff8c42);
+  color: #ffffff;
+  background: #040404;
   border-radius: 7px;
   font-size: 14px;
+  font-weight: 600;
 }
 
 .prompt-text {
@@ -432,13 +434,13 @@
   display: inline-flex;
   align-items: center;
   padding: 5px 12px;
-  background: rgba(255, 107, 53, 0.08);
-  border: 1px solid rgba(255, 107, 53, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 20px;
   font-family: 'Inter', sans-serif;
   font-size: 11px;
   font-weight: 600;
-  color: #ff8c42;
+  color: #ffffff;
   letter-spacing: 0.01em;
 }
 
@@ -504,8 +506,8 @@
 }
 
 .progress-dot.active {
-  background: #ff6b35;
-  box-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
   transform: scale(1.3);
 }
 

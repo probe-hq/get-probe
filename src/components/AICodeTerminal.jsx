@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const AICodeTerminal = ({ compact = false }) => {
+const AICodeTerminal = ({ compact = false, isActive = true }) => {
   const [lines, setLines] = useState([])
   const [currentLineIndex, setCurrentLineIndex] = useState(0)
 
@@ -21,6 +21,10 @@ const AICodeTerminal = ({ compact = false }) => {
   ]
 
   useEffect(() => {
+    if (!isActive) {
+      return
+    }
+
     if (currentLineIndex < codeLines.length) {
       const timer = setTimeout(() => {
         setLines((prev) => [...prev, codeLines[currentLineIndex]])
@@ -29,8 +33,14 @@ const AICodeTerminal = ({ compact = false }) => {
 
       return () => clearTimeout(timer)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentLineIndex])
+  }, [currentLineIndex, isActive])
+
+  useEffect(() => {
+    if (!isActive) {
+      setLines([])
+      setCurrentLineIndex(0)
+    }
+  }, [isActive])
 
   const resetTerminal = () => {
     setLines([])
@@ -95,7 +105,7 @@ const AICodeTerminal = ({ compact = false }) => {
                         </span>
                       )}
                       {!line.prefix && line.type === 'command' && (
-                        <span className="text-[#ff6b35]">$</span>
+                        <span className="text-white">$</span>
                       )}
                       {!line.prefix && line.type === 'output' && (
                         <span className="text-[#a0a0a0]">→</span>
@@ -108,7 +118,7 @@ const AICodeTerminal = ({ compact = false }) => {
                       </span>
                       {line.showCursor && index === lines.length - 1 && (
                         <motion.span
-                          className="inline-block w-2 h-5 bg-[#ff6b35] ml-1"
+                          className="inline-block w-2 h-5 bg-white ml-1"
                           animate={{ opacity: [1, 0] }}
                           transition={{
                             duration: 0.8,

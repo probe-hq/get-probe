@@ -16,12 +16,12 @@
   --bg-tertiary: #1a1a1a;
   --text-primary: #ffffff;
   --text-secondary: #a0a0a0;
-  --accent-primary: #ff6b35;
-  --accent-secondary: #ff8c42;
-  --accent-tertiary: #ffa500;
+  --accent-primary: #ffffff;
+  --accent-secondary: #f0f0f0;
+  --accent-tertiary: #e0e0e0;
   --border-color: #2a2a2a;
-  --gradient-1: linear-gradient(135deg, #ff6b35 0%, #ff8c42 50%, #ffa500 100%);
-  --gradient-2: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
+  --gradient-1: linear-gradient(135deg, #ffffff 0%, #f0f0f0 50%, #e0e0e0 100%);
+  --gradient-2: linear-gradient(135deg, #f0f0f0 0%, #ffffff 100%);
 }
 
 html {

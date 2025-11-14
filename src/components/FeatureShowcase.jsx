@@ -45,7 +45,7 @@ const FeatureShowcase = () => {
           </div>
           <div className="showcase-visual">
             <div className="terminal-visual">
-              <AICodeTerminal compact={true} />
+              <AICodeTerminal compact={true} isActive={inView1} />
             </div>
           </div>
         </div>

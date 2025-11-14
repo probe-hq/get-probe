@@ -1,4 +1,5 @@
 .feature-showcase {
+  margin-top: -800px;
   padding: 0 20px;
   background: var(--bg-primary);
   position: relative;
@@ -48,8 +49,8 @@
 .showcase-label {
   display: inline-block;
   padding: 6px 12px;
-  background: rgba(255, 107, 53, 0.1);
-  border: 1px solid rgba(255, 107, 53, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 6px;
   font-size: 12px;
   font-weight: 600;
@@ -69,7 +70,7 @@
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 50%, #ffa500 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 50%, #e0e0e0 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -151,13 +152,13 @@
 }
 
 .data-node.local {
-  background: rgba(255, 107, 53, 0.2);
+  background: rgba(255, 255, 255, 0.2);
   border: 1px solid var(--accent-primary);
   color: var(--accent-primary);
 }
 
 .data-node.user {
-  background: rgba(255, 140, 66, 0.2);
+  background: rgba(255, 255, 255, 0.2);
   border: 1px solid var(--accent-secondary);
   color: var(--accent-secondary);
 }
@@ -270,10 +271,10 @@
   transform: translateX(-50%);
   font-size: 12px;
   color: var(--accent-primary);
-  background: rgba(255, 107, 53, 0.1);
+  background: rgba(255, 255, 255, 0.1);
   padding: 6px 12px;
   border-radius: 6px;
-  border: 1px solid rgba(255, 107, 53, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* AI Visual */
@@ -296,7 +297,7 @@
 }
 
 .code-line.highlighted {
-  background: rgba(255, 107, 53, 0.1);
+  background: rgba(255, 255, 255, 0.1);
   border-left: 3px solid var(--accent-primary);
   padding-left: 12px;
   margin-left: -20px;
@@ -313,7 +314,8 @@
   top: -40px;
   right: 0;
   background: var(--gradient-1);
-  color: white;
+  color: #000;
+  background-color: white;
   padding: 8px 16px;
   border-radius: 8px;
   font-size: 12px;
@@ -370,8 +372,8 @@
 
 .workspace-status {
   padding: 4px 12px;
-  background: rgba(255, 107, 53, 0.1);
-  border: 1px solid rgba(255, 107, 53, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 6px;
   font-size: 12px;
   font-weight: 600;
@@ -395,7 +397,7 @@
 }
 
 .workspace-tab.active {
-  background: rgba(255, 107, 53, 0.1);
+  background: rgba(255, 255, 255, 0.1);
   border-color: var(--accent-primary);
   color: var(--accent-primary);
 }
@@ -482,8 +484,9 @@
 }
 
 .command-prefix-btn {
-  background: linear-gradient(135deg, #ff6b35 0%, #ffa500 100%);
-  color: white;
+  background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+  color: #000;
+  background-color: white;
   padding: 8px 14px;
   border-radius: 8px;
   font-size: 14px;
@@ -491,7 +494,7 @@
   font-family: 'Monaco', 'Courier New', monospace;
   min-width: 50px;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
 }
 
 .command-input-field {
@@ -563,7 +566,7 @@
   background: var(--bg-secondary);
   border-color: var(--accent-primary);
   transform: translateX(4px);
-  box-shadow: 0 2px 8px rgba(255, 107, 53, 0.2);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
 }
 
 .example-prompt {
@@ -620,7 +623,7 @@
   background: var(--bg-secondary);
   border-color: var(--accent-primary);
   transform: translateX(4px);
-  box-shadow: 0 2px 8px rgba(255, 107, 53, 0.2);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
 }
 
 .command-action-item i {

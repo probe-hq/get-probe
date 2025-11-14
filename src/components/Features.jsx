@@ -1,63 +1,139 @@
-import React from 'react'
-import { useInView } from 'react-intersection-observer'
-import { motion } from 'framer-motion'
+import React, { useEffect, useRef } from 'react'
+import ScrollStack, { ScrollStackItem } from './ScrollStack'
 import './Features.css'
 
-const FeatureCard = ({ visual, title, description, detailedDescription, delay = 0 }) => {
-  const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  })
-
-  return (
-    <motion.div
-      ref={ref}
-      className="flex flex-col items-center"
-      initial={{ opacity: 0, y: 50 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ 
-        duration: 0.6, 
-        delay,
-        ease: [0.25, 0.1, 0.25, 1]
-      }}
-    >
-      {/* Visual Card */}
-      <div className="w-full h-64 bg-[#111111] rounded-2xl border border-[#2a2a2a] mb-6 flex items-center justify-center overflow-hidden relative group hover:border-[#ff6b35]/50 transition-all duration-300">
-        {visual}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-      </div>
-      
-      {/* Title */}
-      <h3 className="text-2xl font-semibold text-white mb-3 text-center">{title}</h3>
-      
-      {/* Short Description */}
-      <p className="text-[#a0a0a0] text-center leading-relaxed max-w-md mb-3">{description}</p>
-      
-      {/* Detailed Description */}
-      {detailedDescription && (
-        <p className="text-[#888888] text-sm text-center leading-relaxed max-w-md">{detailedDescription}</p>
-      )}
-    </motion.div>
-  )
-}
-
 const Features = () => {
-  // Visual components for each feature
+  const sectionRef = useRef(null)
+  const leftContentRef = useRef(null)
+
+  useEffect(() => {
+    // Simple fade-in animation for left content
+    if (leftContentRef.current) {
+      const children = Array.from(leftContentRef.current.children)
+      children.forEach((child, index) => {
+        child.style.opacity = '0'
+        child.style.transform = 'translateY(30px)'
+        child.style.transition = 'opacity 0.8s ease, transform 0.8s ease'
+        
+        setTimeout(() => {
+          child.style.opacity = '1'
+          child.style.transform = 'translateY(0)'
+        }, index * 150)
+      })
+    }
+  }, [])
+
   const features = [
     {
       visual: (
-        <div className="flex flex-col items-center justify-center p-8">
-          <div className="relative">
-            <div className="w-32 h-32 rounded-2xl bg-gradient-to-br from-[#ff6b35]/20 to-[#ff8c42]/20 border-2 border-[#ff6b35]/40 flex items-center justify-center backdrop-blur-sm">
-              <i className="fas fa-database text-6xl text-[#ff6b35]"></i>
+        <div className="feature-visual">
+          <div className="memory-dashboard">
+            <div className="memory-header">
+              <div className="memory-status-indicator">
+                <div className="status-pulse"></div>
+                <div className="status-dot"></div>
+              </div>
+              <div className="memory-title">Probe Memory Engine</div>
             </div>
-            <div className="absolute -top-2 -right-2 w-8 h-8 bg-[#ff6b35] rounded-full flex items-center justify-center">
-              <i className="fas fa-lock text-white text-xs"></i>
+            
+            <div className="memory-stats">
+              <div className="stat-item">
+                <div className="stat-label">Context Sessions</div>
+                <div className="stat-bar">
+                  <div className="stat-bar-fill" style={{ width: '85%' }}></div>
+                </div>
+                <div className="stat-value">127 saved</div>
+              </div>
+              <div className="stat-item">
+                <div className="stat-label">Tab Connections</div>
+                <div className="stat-bar">
+                  <div className="stat-bar-fill" style={{ width: '72%' }}></div>
+                </div>
+                <div className="stat-value">43 linked</div>
+              </div>
+              <div className="stat-item">
+                <div className="stat-label">Search Queries</div>
+                <div className="stat-bar">
+                  <div className="stat-bar-fill" style={{ width: '58%' }}></div>
+                </div>
+                <div className="stat-value">892 indexed</div>
+              </div>
+            </div>
+
+            <div className="memory-recent">
+              <div className="recent-header">Recent Context</div>
+              <div className="recent-items">
+                <div className="recent-item">
+                  <div className="recent-icon"><i className="fas fa-search"></i></div>
+                  <div className="recent-content">
+                    <div className="recent-title">React debugging session</div>
+                    <div className="recent-meta">12 tabs • 3 searches • 2 hours ago</div>
+                  </div>
+                </div>
+                <div className="recent-item">
+                  <div className="recent-icon"><i className="fas fa-book-open"></i></div>
+                  <div className="recent-content">
+                    <div className="recent-title">TypeScript research</div>
+                    <div className="recent-meta">8 tabs • 5 searches • Yesterday</div>
+                  </div>
+                </div>
+                <div className="recent-item">
+                  <div className="recent-icon"><i className="fas fa-laptop-code"></i></div>
+                  <div className="recent-content">
+                    <div className="recent-title">API documentation review</div>
+                    <div className="recent-meta">6 tabs • 2 searches • 3 days ago</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="memory-graph">
+              <div className="graph-bars">
+                <div className="graph-bar" style={{ height: '60%' }}></div>
+                <div className="graph-bar" style={{ height: '80%' }}></div>
+                <div className="graph-bar" style={{ height: '45%' }}></div>
+                <div className="graph-bar" style={{ height: '90%' }}></div>
+                <div className="graph-bar" style={{ height: '70%' }}></div>
+                <div className="graph-bar" style={{ height: '55%' }}></div>
+                <div className="graph-bar" style={{ height: '85%' }}></div>
+              </div>
+              <div className="graph-label">Activity Timeline</div>
             </div>
           </div>
-          <div className="mt-4 text-center">
-            <div className="text-2xl font-bold text-white mb-1">Local</div>
-            <div className="text-lg text-[#ff6b35]">Storage</div>
+        </div>
+      ),
+      title: 'Probe Memory',
+      description: 'Intelligent context tracking that remembers not just what pages you visited, but how you interacted with them.',
+      detailedDescription: 'Probe Memory captures search queries, form inputs, scroll positions, and your thought process. When you return, it surfaces relevant context automatically, helping you continue your work seamlessly. Every interaction is indexed and searchable, creating a comprehensive memory of your browsing journey.',
+    },
+    {
+      visual: (
+        <div className="feature-visual">
+          <div className="local-storage-visual">
+            <div className="storage-icon-wrapper">
+              <i className="fas fa-database"></i>
+              <div className="storage-badge">
+                <i className="fas fa-lock"></i>
+              </div>
+            </div>
+            <div className="storage-info">
+              <div className="storage-title">Local Storage</div>
+              <div className="storage-subtitle">100% On-Device</div>
+            </div>
+            <div className="storage-features">
+              <div className="storage-feature">
+                <i className="fas fa-check-circle"></i>
+                <span>Encrypted at rest</span>
+              </div>
+              <div className="storage-feature">
+                <i className="fas fa-check-circle"></i>
+                <span>No cloud sync</span>
+              </div>
+              <div className="storage-feature">
+                <i className="fas fa-check-circle"></i>
+                <span>Full user control</span>
+              </div>
+            </div>
           </div>
         </div>
       ),
@@ -67,51 +143,38 @@ const Features = () => {
     },
     {
       visual: (
-        <div className="w-full h-full p-6 bg-gradient-to-br from-[#0a0a0a] to-[#111111] relative overflow-hidden">
-          {/* Mock dashboard UI */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-2 h-2 rounded-full bg-[#ff6b35]"></div>
-              <div className="text-sm text-white font-semibold">Probe Memory</div>
-            </div>
-            <div className="space-y-2">
-              <div className="h-3 bg-[#ff6b35]/30 rounded-full" style={{ width: '80%' }}></div>
-              <div className="h-3 bg-[#ff8c42]/30 rounded-full" style={{ width: '60%' }}></div>
-              <div className="h-3 bg-[#ffa500]/30 rounded-full" style={{ width: '40%' }}></div>
-            </div>
-            <div className="mt-4 pt-4 border-t border-[#2a2a2a]">
-              <div className="text-xs text-[#a0a0a0] mb-1">Context saved</div>
-              <div className="text-sm text-white">React debugging session</div>
-            </div>
-          </div>
-        </div>
-      ),
-      title: 'Probe Memory',
-      description: 'Probe Memory is a local memory engine that stores your browsing context, so that you can pick up exactly where you left.',
-      detailedDescription: 'Intelligent context tracking remembers not just what pages you visited, but how you interacted with them. Search queries, form inputs, scroll positions, and even your thought process are captured. When you return, Probe surfaces relevant context automatically, helping you continue your work seamlessly.',
-    },
-    {
-      visual: (
-        <div className="flex flex-col items-center justify-center p-8">
-          <div className="relative mb-4">
-            {/* Cloud icon */}
-            <div className="w-24 h-24 bg-gradient-to-br from-[#ff6b35]/20 to-[#ff8c42]/20 rounded-2xl border-2 border-[#ff6b35]/40 flex items-center justify-center backdrop-blur-sm mb-4">
-              <i className="fas fa-cloud text-5xl text-[#ff6b35]"></i>
-            </div>
-            {/* Server racks below */}
-            <div className="flex items-end justify-center gap-2">
-              <div className="w-12 h-16 bg-[#111111] border border-[#2a2a2a] rounded flex flex-col items-center justify-end pb-2">
-                <div className="w-2 h-2 rounded-full bg-[#ff6b35] mb-1"></div>
-                <div className="w-2 h-2 rounded-full bg-[#ff6b35]"></div>
+        <div className="feature-visual">
+          <div className="cross-tab-visual">
+            <div className="tabs-container">
+              <div className="tab-item active">
+                <div className="tab-icon"><i className="fab fa-react"></i></div>
+                <div className="tab-content">
+                  <div className="tab-title">React Docs</div>
+                  <div className="tab-status">Active</div>
+                </div>
               </div>
-              <div className="w-12 h-20 bg-[#111111] border border-[#2a2a2a] rounded flex flex-col items-center justify-end pb-2">
-                <div className="w-2 h-2 rounded-full bg-[#ff8c42] mb-1"></div>
-                <div className="w-2 h-2 rounded-full bg-[#ff8c42]"></div>
+              <div className="tab-item">
+                <div className="tab-icon"><i className="fas fa-book-reader"></i></div>
+                <div className="tab-content">
+                  <div className="tab-title">Stack Overflow</div>
+                  <div className="tab-status">Related</div>
+                </div>
               </div>
-              <div className="w-12 h-14 bg-[#111111] border border-[#2a2a2a] rounded flex flex-col items-center justify-end pb-2">
-                <div className="w-2 h-2 rounded-full bg-[#ffa500] mb-1"></div>
-                <div className="w-2 h-2 rounded-full bg-[#ffa500]"></div>
+              <div className="tab-item">
+                <div className="tab-icon"><i className="fas fa-laptop-code"></i></div>
+                <div className="tab-content">
+                  <div className="tab-title">GitHub Repo</div>
+                  <div className="tab-status">Linked</div>
+                </div>
               </div>
+            </div>
+            <div className="connection-lines">
+              <div className="connection-line"></div>
+              <div className="connection-line"></div>
+            </div>
+            <div className="intelligence-indicator">
+              <div className="intelligence-pulse"></div>
+              <span>Cross-Tab Intelligence Active</span>
             </div>
           </div>
         </div>
@@ -124,36 +187,63 @@ const Features = () => {
 
   return (
     <section 
+      ref={sectionRef}
       id="features" 
-      className="pt-32 pb-0 px-6 lg:px-8 bg-[#000000] relative overflow-hidden features-section"
+      className="features-section"
     >
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-        >
-          <h2 className="text-5xl lg:text-6xl font-bold mb-4">
-            Key <span className="text-[#ff6b35]">Features</span>
+      <div className="features-container">
+        {/* Key Features Section - Overlay on top of cards */}
+        <div ref={leftContentRef} className="features-left">
+          <div className="features-label">Key Features</div>
+          <h2 className="features-title">
+            Everything You Need for a <span className="gradient-text">Smarter Browsing</span> Experience
           </h2>
-          <p className="text-xl text-[#a0a0a0] max-w-2xl mx-auto">
-            Everything you need for a smarter browsing experience
+          <p className="features-subtitle">
+            Probe transforms your browser into an intelligent workspace that remembers, learns, and adapts to your workflow.
           </p>
-        </motion.div>
+          <div className="features-highlights">
+            <div className="highlight-item">
+              <i className="fas fa-brain"></i>
+              <span>Intelligent Memory</span>
+            </div>
+            <div className="highlight-item">
+              <i className="fas fa-shield-alt"></i>
+              <span>100% Private</span>
+            </div>
+            <div className="highlight-item">
+              <i className="fas fa-bolt"></i>
+              <span>Lightning Fast</span>
+            </div>
+          </div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-          {features.map((feature, index) => (
-            <FeatureCard
-              key={index}
-              visual={feature.visual}
-              title={feature.title}
-              description={feature.description}
-              detailedDescription={feature.detailedDescription}
-              delay={index * 0.1}
-            />
-          ))}
+        {/* Features List with ScrollStack */}
+        <div className="features-right">
+          <ScrollStack
+            className="features-scroll-stack"
+            itemDistance={120}
+            itemScale={0.04}
+            itemStackDistance={40}
+            stackPosition="50%"
+            scaleEndPosition="40%"
+            baseScale={0.88}
+            rotationAmount={0}
+            blurAmount={2}
+            useWindowScroll={true}
+          >
+            {features.map((feature, index) => (
+              <ScrollStackItem key={index} itemClassName="feature-stack-item">
+                <div className="feature-card">
+                  {feature.visual}
+                  <div className="feature-content">
+                    <h3 className="feature-title">{feature.title}</h3>
+                    <p className="feature-description">{feature.description}</p>
+                    <p className="feature-detailed">{feature.detailedDescription}</p>
+                  </div>
+                </div>
+              </ScrollStackItem>
+            ))}
+          </ScrollStack>
         </div>
       </div>
     </section>

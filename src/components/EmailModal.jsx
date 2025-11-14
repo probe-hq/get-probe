@@ -89,7 +89,7 @@ const EmailModal = ({ isOpen, onClose }) => {
             {!success ? (
               <>
                 <div className="modal-header">
-                  <div className="modal-icon">🚀</div>
+                  <div className="modal-icon"><img src='src/assets/probe.png'></img></div>
                   <h2>Join the Waitlist</h2>
                   <p>Be among the first to experience Probe's Memory Web</p>
                 </div>
